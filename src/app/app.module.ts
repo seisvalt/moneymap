@@ -11,6 +11,7 @@ import {TabsPage} from "../pages/tabs/tabs";
 import {StatusBar} from "@ionic-native/status-bar";
 import {SplashScreen} from "@ionic-native/splash-screen";
 import {TransactionsPage} from "../pages/transactions/transactions";
+import {AddingPage} from "../pages/adding/adding";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {TransactionsPage} from "../pages/transactions/transactions";
     ContactPage,
     HomePage,
     TabsPage,
-    TransactionsPage
+    TransactionsPage,
+    AddingPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import {TransactionsPage} from "../pages/transactions/transactions";
     ContactPage,
     HomePage,
     TabsPage,
-    TransactionsPage
+    TransactionsPage,
+    AddingPage
   ],
   providers: [
     StatusBar,

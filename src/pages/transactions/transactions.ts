@@ -23,10 +23,16 @@ export class TransactionsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
+  //metodo se ejecuta cuando se carga la primera vez la vista
   ionViewDidLoad() {
     //console.log('ionViewDidLoad TransactionsPage');
     //let transaction = new Transaction(20, "primera");
     //transaction.save();
+    this.loadTransactions();
+  }
+
+  //se ejecuta cadavez que la vista sea mostrada
+  ionViewWillEnter() {
     this.loadTransactions();
   }
 

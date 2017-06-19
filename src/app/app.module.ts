@@ -12,6 +12,8 @@ import {StatusBar} from "@ionic-native/status-bar";
 import {SplashScreen} from "@ionic-native/splash-screen";
 import {TransactionsPage} from "../pages/transactions/transactions";
 import {AddingPage} from "../pages/adding/adding";
+import {GeolocationService} from "../services/geolocation.service";
+import {Geolocation} from "@ionic-native/geolocation";
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import {AddingPage} from "../pages/adding/adding";
   providers: [
     StatusBar,
     SplashScreen,
+    GeolocationService,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

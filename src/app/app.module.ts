@@ -14,6 +14,7 @@ import {TransactionsPage} from "../pages/transactions/transactions";
 import {AddingPage} from "../pages/adding/adding";
 import {GeolocationService} from "../services/geolocation.service";
 import {Geolocation} from "@ionic-native/geolocation";
+import {MapPage} from "../pages/map/map";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {Geolocation} from "@ionic-native/geolocation";
     HomePage,
     TabsPage,
     TransactionsPage,
-    AddingPage
+    AddingPage,
+    MapPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import {Geolocation} from "@ionic-native/geolocation";
     HomePage,
     TabsPage,
     TransactionsPage,
-    AddingPage
+    AddingPage,
+    MapPage
   ],
   providers: [
     StatusBar,

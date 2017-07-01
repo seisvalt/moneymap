@@ -15,6 +15,7 @@ import {AddingPage} from "../pages/adding/adding";
 import {GeolocationService} from "../services/geolocation.service";
 import {Geolocation} from "@ionic-native/geolocation";
 import {MapPage} from "../pages/map/map";
+import {Camera} from "@ionic-native/camera";
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import {MapPage} from "../pages/map/map";
     SplashScreen,
     GeolocationService,
     Geolocation,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

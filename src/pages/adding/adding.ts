@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {IonicPage, NavController, NavParams} from "ionic-angular";
 import {Transaction} from "../../db/database";
 import {GeolocationService} from "../../services/geolocation.service";
+import {Camera, CameraOptions} from "@ionic-native/camera";
 
 
 /**
@@ -20,8 +21,9 @@ export class AddingPage {
   model: Transaction = new Transaction(null, "");
   shouldGeolocate: boolean = false;
   shouldSend: boolean = true;
+  imageData: string = null;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocator: GeolocationService) {
+  constructor(private camera: Camera, public navCtrl: NavController, public navParams: NavParams, public geolocator: GeolocationService) {
   }
 
   ionViewDidLoad() {
@@ -44,6 +46,23 @@ export class AddingPage {
       console.log("Mococlean");
       this.model.cleanCoords();
     }
+  }
+
+  getPhoto() {
+    let cameraOptions: CameraOptions = {
+      quality: 80,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    };
+    this.camera.getPicture(cameraOptions).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64:
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.imageData = base64Image;
+    }, (err) => {
+      alert("error");
+    });
   }
 
   save() {

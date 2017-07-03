@@ -8,7 +8,7 @@ import {
   MarkerOptions
 } from "@ionic-native/google-maps";
 import {GeolocationService} from "../../services/geolocation.service";
-import {ITransaction, Transaction} from "../../db/database";
+import {Transaction} from "../../db/database";
 
 /**
  * Generated class for the MapPage page.
@@ -57,15 +57,17 @@ export class MapPage {
     Transaction.all().then((results) => this.loadTransactionsMarkers(results));
   }
 
-  private loadTransactionsMarkers(results: Array<ITransaction>) {
+  private loadTransactionsMarkers(results: Array<Transaction>) {
 
     for (var i = 0; i < results.length; ++i) {
       let transaction = results[i];
+
+      if (!transaction.hasLocation()) continue; //Evita continuar el ciclo
       let markerLocation: LatLng = new LatLng(transaction.lat, transaction.lng);
       let markerOptions: MarkerOptions = {
         position: markerLocation,
         title: transaction.title,
-        icon: "blue"
+        icon: transaction.getImage()
       };
       this.map.addMarker(markerOptions).then((marker: Marker) => {
         marker.showInfoWindow();

@@ -60,6 +60,7 @@ export class AddingPage {
       // If it's base64:
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       this.imageData = base64Image;
+      this.model.imageUrl = this.imageData;
     }, (err) => {
       alert("error");
     });

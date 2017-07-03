@@ -18,6 +18,7 @@ import {MapPage} from "../pages/map/map";
 import {Camera} from "@ionic-native/camera";
 import {WalletsPage} from "../pages/wallets/wallets";
 import {WalletService} from "../services/wallets.service";
+import {TransactionService} from "../services/transactions.service";
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import {WalletService} from "../services/wallets.service";
     Geolocation,
     Camera,
     WalletService,
+    TransactionService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -9,6 +9,7 @@ import {
 } from "@ionic-native/google-maps";
 import {GeolocationService} from "../../services/geolocation.service";
 import {Transaction} from "../../db/database";
+import {TransactionService} from "../../services/transactions.service";
 
 /**
  * Generated class for the MapPage page.
@@ -24,7 +25,10 @@ import {Transaction} from "../../db/database";
 export class MapPage {
   map: GoogleMap = null;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocator: GeolocationService) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public geolocator: GeolocationService,
+              private transactionService: TransactionService) {
   }
 
   //se carga solo una vez
@@ -54,7 +58,7 @@ export class MapPage {
   }
 
   loadMarkers() {
-    Transaction.all().then((results) => this.loadTransactionsMarkers(results));
+    this.transactionService.all().then((results) => this.loadTransactionsMarkers(results));
   }
 
   private loadTransactionsMarkers(results: Array<Transaction>) {

@@ -27,6 +27,10 @@ export class TransactionAppDb extends Dexie {
       transactions: '++id, amount, lat, lng, imageUrl, title',
       wallets: '++id, amount, name',
     });
+    this.version(3).stores({
+      transactions: '++id, amount, lat, lng, imageUrl, title, walletId',
+      wallets: '++id, amount, name',
+    });
 
     this.transactions.mapToClass(Transaction);
     this.wallets.mapToClass(Wallet);
@@ -41,14 +45,16 @@ export class Transaction implements ITransaction {
   lng: number;
   imageUrl: string;
   title: string;
+  walletId: number;
 
-  constructor(amount: number, title: string, lat?: number, lng?: number, imageUrl?: string, id?: number) {
+  constructor(amount: number, title: string, lat?: number, lng?: number, imageUrl?: string, id?: number, walletId?: number) {
     this.amount = amount;
     this.title = title;
     if (lat) this.lat = lat;
     if (lng) this.lng = lng;
     if (imageUrl) this.imageUrl = imageUrl;
     if (id) this.id = id;
+    if (walletId) this.walletId = walletId;
   }
 
   save() {
@@ -69,9 +75,13 @@ export class Transaction implements ITransaction {
     return !!(this.lat && this.lng); //!! doble negacion devuelve el inverso en boleean
   }
 
-  static all() {
+  static all(walletID) {
     //Retorna un promise
-    return db.transactions.orderBy("id").reverse().toArray();
+    return db.transactions
+      .where("walletId")
+      .equals(parseInt(walletID))
+      .reverse()
+      .toArray();
   }
 
   getImage(): string {

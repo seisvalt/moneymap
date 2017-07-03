@@ -1,8 +1,8 @@
 import {Component} from "@angular/core";
 import {IonicPage, NavController, NavParams} from "ionic-angular";
-import {Transaction} from "../../db/database";
 import {AddingPage} from "../adding/adding";
 import {WalletService} from "../../services/wallets.service";
+import {TransactionService} from "../../services/transactions.service";
 
 /**
  * Generated class for the TransactionsPage page.
@@ -21,27 +21,36 @@ export class TransactionsPage {
   transactions: any;
   addingPage = AddingPage;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private walletService: WalletService) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private walletService: WalletService,
+              private transactionService: TransactionService) {
   }
 
   //metodo se ejecuta cuando se carga la primera vez la vista
-  ionViewDidLoad() {
+  /*  ionViewDidLoad() {
     //console.log('ionViewDidLoad TransactionsPage');
     //let transaction = new Transaction(20, "primera");
     //transaction.save();
     this.loadTransactions();
-  }
+   }*/
 
   //se ejecuta cadavez que la vista sea mostrada
   ionViewWillEnter() {
-    this.loadTransactions();
+
     this.walletService.validateFristWallet();
+    console.log(this.walletService.getID());
+    this.loadTransactions();
   }
 
   loadTransactions() {
-    Transaction.all()
+    this.transactionService.all()
       .then((resultados) => {
-        this.transactions = resultados
+        this.transactions = resultados;
+        console.log("bla");
+      }).catch(err => {
+      console.log("podrido");
+      console.log(err)
       });
   }
 

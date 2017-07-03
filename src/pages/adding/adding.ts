@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams} from "ionic-angular";
 import {Transaction} from "../../db/database";
 import {GeolocationService} from "../../services/geolocation.service";
 import {Camera, CameraOptions} from "@ionic-native/camera";
+import {WalletService} from "../../services/wallets.service";
 
 
 /**
@@ -18,12 +19,16 @@ import {Camera, CameraOptions} from "@ionic-native/camera";
 })
 export class AddingPage {
 
-  model: Transaction = new Transaction(null, "");
+  model: Transaction = this.cleanTransaction();
   shouldGeolocate: boolean = false;
   shouldSend: boolean = true;
   imageData: string = null;
 
-  constructor(private camera: Camera, public navCtrl: NavController, public navParams: NavParams, public geolocator: GeolocationService) {
+  constructor(private camera: Camera,
+              public navCtrl: NavController,
+              public navParams: NavParams,
+              public geolocator: GeolocationService,
+              private walletService: WalletService) {
   }
 
   ionViewDidLoad() {
@@ -70,11 +75,18 @@ export class AddingPage {
     if (this.shouldSend) {
       this.model.save().then(result => {
         //al finalizar el guardado la promesa ejecuta un "limpiar el model"
-        this.model = new Transaction(null, "");
+        this.model = this.cleanTransaction();
         //se elimina la ultima vista de la pila
         this.navCtrl.pop();
       });
     }
+  }
+
+  cleanTransaction() {
+    let transaction = new Transaction(null, "");
+    transaction.walletId = this.walletService.getID();
+    return transaction;
+
   }
 
 }

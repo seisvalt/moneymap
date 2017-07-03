@@ -14,6 +14,10 @@ export class WalletService {
     return parseInt(localStorage.getItem(StorageKey));
   }
 
+  empty(): boolean {
+    return !localStorage.getItem(StorageKey);
+  }
+
   validateFristWallet() {
     return new Promise((resolve, reject) => {
       Wallet.frist().then((wallet) => {

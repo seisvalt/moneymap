@@ -37,8 +37,9 @@ export class TransactionsPage {
 
   //se ejecuta cadavez que la vista sea mostrada
   ionViewWillEnter() {
-
-    this.walletService.validateFristWallet();
+    if (this.walletService.empty()) {
+      this.walletService.validateFristWallet();
+    }
     console.log(this.walletService.getID());
     this.loadTransactions();
   }

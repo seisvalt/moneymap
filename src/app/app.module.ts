@@ -19,6 +19,7 @@ import {Camera} from "@ionic-native/camera";
 import {WalletsPage} from "../pages/wallets/wallets";
 import {WalletService} from "../services/wallets.service";
 import {TransactionService} from "../services/transactions.service";
+import {NewWalletPage} from "../pages/new-wallet/new-wallet";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {TransactionService} from "../services/transactions.service";
     TransactionsPage,
     AddingPage,
     MapPage,
-    WalletsPage
+    WalletsPage,
+    NewWalletPage,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import {TransactionService} from "../services/transactions.service";
     TransactionsPage,
     AddingPage,
     MapPage,
-    WalletsPage
+    WalletsPage,
+    NewWalletPage,
   ],
   providers: [
     StatusBar,

@@ -1,6 +1,8 @@
 import {Component} from "@angular/core";
 import {IonicPage, NavController, NavParams} from "ionic-angular";
 import {IWallet, Wallet} from "../../db/database";
+import {NewWalletPage} from "../new-wallet/new-wallet";
+import {WalletService} from "../../services/wallets.service";
 
 /**
  * Generated class for the WalletsPage page.
@@ -15,12 +17,17 @@ import {IWallet, Wallet} from "../../db/database";
 })
 export class WalletsPage {
   private wallets: IWallet[];
+  addingPage = NewWalletPage;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private walletService: WalletService) {
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     Wallet.all().then(results => this.wallets = results);
+  }
+
+  set(wallet: Wallet) {
+    this.walletService.setID(wallet.id);
   }
 
 }

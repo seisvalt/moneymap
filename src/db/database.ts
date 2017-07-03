@@ -9,7 +9,7 @@ export interface ITransaction {
   title: string;
 }
 export class TransactionAppDb extends Dexie {
-  transactions: Dexie.Table<ITransaction, number>;
+  transactions: Dexie.Table<Transaction, number>;
 
   constructor() {
     super("moneymapdb");
@@ -52,9 +52,20 @@ export class Transaction implements ITransaction {
     this.lng = null;
   }
 
+  hasLocation(): boolean {
+    return !!(this.lat && this.lng); //!! doble negacion devuelve el inverso en boleean
+  }
+
   static all() {
     //Retorna un promise
     return db.transactions.orderBy("id").reverse().toArray();
+  }
+
+  getImage(): string {
+    if (this.imageUrl)
+      return this.imageUrl;
+    else
+      return "blue";
   }
 }
 

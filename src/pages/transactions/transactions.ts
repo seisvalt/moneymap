@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {IonicPage, NavController, NavParams} from "ionic-angular";
 import {Transaction} from "../../db/database";
 import {AddingPage} from "../adding/adding";
+import {WalletService} from "../../services/wallets.service";
 
 /**
  * Generated class for the TransactionsPage page.
@@ -20,7 +21,7 @@ export class TransactionsPage {
   transactions: any;
   addingPage = AddingPage;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private walletService: WalletService) {
   }
 
   //metodo se ejecuta cuando se carga la primera vez la vista
@@ -34,6 +35,7 @@ export class TransactionsPage {
   //se ejecuta cadavez que la vista sea mostrada
   ionViewWillEnter() {
     this.loadTransactions();
+    this.walletService.validateFristWallet();
   }
 
   loadTransactions() {

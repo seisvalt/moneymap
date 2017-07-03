@@ -16,6 +16,8 @@ import {GeolocationService} from "../services/geolocation.service";
 import {Geolocation} from "@ionic-native/geolocation";
 import {MapPage} from "../pages/map/map";
 import {Camera} from "@ionic-native/camera";
+import {WalletsPage} from "../pages/wallets/wallets";
+import {WalletService} from "../services/wallets.service";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import {Camera} from "@ionic-native/camera";
     TabsPage,
     TransactionsPage,
     AddingPage,
-    MapPage
+    MapPage,
+    WalletsPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import {Camera} from "@ionic-native/camera";
     TabsPage,
     TransactionsPage,
     AddingPage,
-    MapPage
+    MapPage,
+    WalletsPage
   ],
   providers: [
     StatusBar,
@@ -49,6 +53,7 @@ import {Camera} from "@ionic-native/camera";
     GeolocationService,
     Geolocation,
     Camera,
+    WalletService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

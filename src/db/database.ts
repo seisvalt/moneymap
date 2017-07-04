@@ -107,6 +107,10 @@ export class Wallet implements IWallet {
     return db.wallets.add(this);
   }
 
+  delete() {
+    db.wallets.delete(this.id);
+  }
+
   static createFrist() {
     let wallet = new Wallet(0, "La cartera");
     return wallet.save();
@@ -119,6 +123,7 @@ export class Wallet implements IWallet {
   static all() {
     return db.wallets.orderBy("id").toArray();
   }
+
 }
 
 export let db = new TransactionAppDb();

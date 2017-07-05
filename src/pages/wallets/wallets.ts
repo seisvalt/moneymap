@@ -53,6 +53,8 @@ export class WalletsPage {
   }
 
   showToast(message, position: string) {
+    //Ambos codigos funcionan igual
+    //this.toast.show(message, '5000', position).subscribe(console.log);
     this.toast.show(message, '5000', position).subscribe(
       toast => {
         console.log(toast);

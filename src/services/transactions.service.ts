@@ -10,4 +10,9 @@ export class TransactionService {
   all(): any {
     return Transaction.all(this.walletService.getID());
   }
+
+  save(transaction: Transaction): any {
+    let transactionSavePromise = transaction.save();
+    return transactionSavePromise;
+  }
 }

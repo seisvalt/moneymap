@@ -20,6 +20,7 @@ import {WalletsPage} from "../pages/wallets/wallets";
 import {WalletService} from "../services/wallets.service";
 import {TransactionService} from "../services/transactions.service";
 import {NewWalletPage} from "../pages/new-wallet/new-wallet";
+import {Toast} from "@ionic-native/toast";
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import {NewWalletPage} from "../pages/new-wallet/new-wallet";
     GeolocationService,
     Geolocation,
     Camera,
+    Toast,
     WalletService,
     TransactionService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
